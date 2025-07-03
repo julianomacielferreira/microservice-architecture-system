@@ -1,4 +1,0 @@
-{
-    "python.pythonPath": "../python/src/auth/venv/bin/python",
-    "editor.defaultFormatter": "ms-python.black-formatter"
-}
