@@ -1,6 +1,6 @@
 ## Microservice Architecture System
 
-This is a project I've always have the desire to code and make my own modifications and improvements.
+This is a project I've always have the desire to code (but did not have the time to do it before) and make my own modifications and improvements.
 The initial code is based on the tutorial from [freecodecamp youtube channel](https://www.youtube.com/@freecodecamp) called [**Microservice Architecture and System Design with Python & Kubernetes – Full Course**](https://www.youtube.com/watch?v=hmkF77F9TLw).
 
 ## Explanation of the docker-compose.yml file:
