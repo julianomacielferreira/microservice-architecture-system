@@ -1,6 +1,7 @@
 ## Microservice Architecture System
 
-@TODO
+This is a project I've always have the desire to code and make my own modifications and improvements.
+The initial code is based on the tutorial from [freecodecamp youtube channel](https://www.youtube.com/@freecodecamp) called [**Microservice Architecture and System Design with Python & Kubernetes – Full Course**](https://www.youtube.com/watch?v=hmkF77F9TLw).
 
 ## Explanation of the docker-compose.yml file:
 
@@ -26,7 +27,7 @@ volumes: Defines the named volumes used in your services.
         driver: local: Specifies that the volume should be stored locally on your host machine.
 ```
 
-## Solve the problem:
+## Problems faced at the initial setup:
 
 - Exception: Can not find valid pkg-config name. 
 - Specify MYSQLCLIENT_CFLAGS and MYSQLCLIENT_LDFLAGS env vars manually
@@ -34,3 +35,7 @@ volumes: Defines the named volumes used in your services.
 ```bash
 $ sudo apt-get install pkg-config python3-dev default-libmysqlclient-dev build-essential
 ```
+
+## References
+
+@TODO
