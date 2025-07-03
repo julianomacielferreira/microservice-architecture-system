@@ -1,6 +1,7 @@
 ## Microservice Architecture System
 
-This is a project I've always have the desire to code (but did not have the time to do it before) and make my own modifications and improvements.
+This is a project I've always have the desire to code (but did not have the time to do it before) and make my own modifications and improvements (i.e, adding new features).
+
 The initial code is based on the tutorial from [freecodecamp youtube channel](https://www.youtube.com/@freecodecamp) called [**Microservice Architecture and System Design with Python & Kubernetes – Full Course**](https://www.youtube.com/watch?v=hmkF77F9TLw).
 
 ## Explanation of the docker-compose.yml file:
@@ -38,4 +39,7 @@ $ sudo apt-get install pkg-config python3-dev default-libmysqlclient-dev build-e
 
 ## References
 
-@TODO
+- [**Kubernetes**](https://kubernetes.io/)
+- [**minikube**](https://minikube.sigs.k8s.io/)
+- [**k9s**](https://github.com/derailed/k9s)
+- [**Python 3**](https://www.python.org/)
