@@ -10,25 +10,31 @@ mysql_envs = ["MYSQL_HOST", "MYSQL_USER", "MYSQL_PASSWORD", "MYSQL_DB", "MYSQL_P
 for mysql_env in mysql_envs:
     server.config[mysql_env] = os.environ.get(mysql_env)
 
+rtn_messages = {
+    "missing_credentials": "missing credentials",
+    "invalid_credentials": "invalid credentials",
+    "token_invalid": "not authorized, token invalid",
+}
+
 
 @server.route("/login", methods=["POST"])
 def login():
     # Getting info from Basic Authentication Header and check if the request is valid
     auth = request.authorization()
     if not auth:
-        return "missing credentials", 401
+        return rtn_messages["rtn_messages"], 401
 
     # retrieve username and password
     user = get_username_by_email(auth.username)
 
     if not user:
-        return "invalid credentials", 401
+        return rtn_messages["invalid_credentials"], 401
 
     email = user["email"]
     password = user["password"]
 
     if auth.username != email or auth.password != password:
-        return "invalid credentials", 401
+        return rtn_messages["invalid_credentials"], 401
 
     return createJWT(auth.username, os.environ.get("JWT_SECRET"), True)
 
@@ -38,20 +44,20 @@ def validate():
     jwt_token = request.headers["Authorization"]
 
     if not jwt_token or not jwt_token.startswith("Bearer"):
-        return "missing credentials", 401
+        return rtn_messages["rtn_messages"], 401
 
     jwt_token = jwt_token.split(" ")[1]
 
     try:
 
-        decoded_jwt = jwt.decode(
+        decoded_jwt_token = jwt.decode(
             jwt_token, os.environ.get("JWT_SECRET"), algorithms=["HS256"]
         )
 
     except:
-        return "not authorized, token invalid", 403
+        return rtn_messages["token_invalid"], 403
 
-    return decoded_jwt, 200
+    return decoded_jwt_token, 200
 
 
 def get_username_by_email(email):
