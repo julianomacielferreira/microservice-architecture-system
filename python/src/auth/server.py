@@ -13,12 +13,12 @@ for mysql_env in mysql_envs:
 
 @server.route("/login", methods=["POST"])
 def login():
-    # Getting info from Basic Authentication Header
+    # Getting info from Basic Authentication Header and check if the request is valid
     auth = request.authorization()
-    if not auth:  # request invalid
+    if not auth:
         return "missing credentials", 401
 
-    # check db for username and password
+    # retrieve username and password
     user = get_username_by_email(auth.username)
 
     if not user:
@@ -31,6 +31,27 @@ def login():
         return "invalid credentials", 401
 
     return createJWT(auth.username, os.environ.get("JWT_SECRET"), True)
+
+
+@server.route("/validate", methods=["POST"])
+def validate():
+    jwt_token = request.headers["Authorization"]
+
+    if not jwt_token or not jwt_token.startswith("Bearer"):
+        return "missing credentials", 401
+
+    jwt_token = jwt_token.split(" ")[1]
+
+    try:
+
+        decoded_jwt = jwt.decode(
+            jwt_token, os.environ.get("JWT_SECRET"), algorithms=["HS256"]
+        )
+
+    except:
+        return "not authorized, token invalid", 403
+
+    return decoded_jwt
 
 
 def get_username_by_email(email):
