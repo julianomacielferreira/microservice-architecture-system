@@ -34,6 +34,15 @@ def login():
 
 
 def get_username_by_email(email):
+    """
+     Fetch the database to retrieve the user using his email.
+
+     Args:
+        email (string): The user email
+
+    Returns:
+        dict: A dictionary with email and password if the user has been found, false otherwise.
+    """
     cursor = mysql.connection.cursor()
     result = cursor.execute(
         "SELECT email, password FROM user WHERE email=%s", (auth.username)
@@ -49,7 +58,18 @@ def get_username_by_email(email):
 
 
 def createJWT(username, secret, is_admin):
+    """
+     Create a JSON Web Token with username, the secret env and a flag to tell
+     if the user has administrative privileges.
 
+     Args:
+        username (string).
+        secret (string).
+        is_admin (bool)
+
+    Returns:
+        string: The JWT token encoded with HS256 algorithm.
+    """
     THIS_TIME = datetime.datetime.now(tz=datetime.timezone.utc)
 
     return jwt.encode(
@@ -66,4 +86,5 @@ def createJWT(username, secret, is_admin):
 
 # config entry point listening on port 5000
 if __name__ == "__main__":
+    # this tells the operation system to listen to all public IPs
     server.run(host="0.0.0.0", port=5000)
