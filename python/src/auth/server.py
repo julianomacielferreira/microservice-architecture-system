@@ -62,3 +62,8 @@ def createJWT(username, secret, is_admin):
         secret,
         algorithm=["HS256"],
     )
+
+
+# config entry point listening on port 5000
+if __name__ == "__main__":
+    server.run(host="0.0.0.0", port=5000)
