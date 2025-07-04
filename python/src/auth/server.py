@@ -51,7 +51,7 @@ def validate():
     except:
         return "not authorized, token invalid", 403
 
-    return decoded_jwt
+    return decoded_jwt, 200
 
 
 def get_username_by_email(email):
