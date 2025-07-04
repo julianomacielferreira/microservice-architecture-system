@@ -4,7 +4,15 @@ This is a project I've always have the desire to code (but did not have the time
 
 The initial code is based on the tutorial from [freecodecamp youtube channel](https://www.youtube.com/@freecodecamp) called [**Microservice Architecture and System Design with Python & Kubernetes – Full Course**](https://www.youtube.com/watch?v=hmkF77F9TLw).
 
-## Explanation of the docker-compose.yml file:
+## Project Files Structure
+
+@TODO
+
+## Running the application
+
+@TODO
+
+## Explanation of the docker-compose.yml file (at the root of the application):
 
 ```yml
 version: '3.8': Specifies the Docker Compose file format version.
