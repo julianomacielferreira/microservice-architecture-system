@@ -6,7 +6,7 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 
 ![Microservice Architecture and System Design with Python & Kubernetes – Full Course](./video-thumbnail.jpg)
 
-## Project Files Structure
+## Project File Structure
 
 @TODO
 
