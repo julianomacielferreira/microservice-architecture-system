@@ -1,7 +1,10 @@
 import os, requests
 
 
-def login(request):
+def auth_login(request):
+    """
+        Authenticate in the login endpoint at auth service
+    """
     authorization = request.authorization
 
     if not authorization:
