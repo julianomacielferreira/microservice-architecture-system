@@ -4,6 +4,8 @@ This is a project I've always have the desire to code (but did not have the time
 
 The initial code is based on the tutorial from [freecodecamp youtube channel](https://www.youtube.com/@freecodecamp) called [**Microservice Architecture and System Design with Python & Kubernetes – Full Course**](https://www.youtube.com/watch?v=hmkF77F9TLw).
 
+![Microservice Architecture and System Design with Python & Kubernetes – Full Course](./video-thumbnail.jpg)
+
 ## Project Files Structure
 
 @TODO
@@ -16,7 +18,7 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 
 @TODO
 
-## Create secret token using python 
+## Create secret token using python
 
 ```python
 import secrets
