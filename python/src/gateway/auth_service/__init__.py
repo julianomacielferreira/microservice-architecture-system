@@ -1,2 +1,2 @@
 from validate_service import validate_jwt
-from login_service import login
+from login_service import auth_login
