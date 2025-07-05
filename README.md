@@ -8,9 +8,31 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 
 @TODO
 
+## Create docker image, tagging and upload to a docker hub repository
+
+@TODO
+
+## Create config files for kubernetes to pull the images
+
+@TODO
+
+## Create secret token using python 
+
+```python
+import secrets
+
+# Generate a 32-byte (64-character hex string)
+secret_key = secrets.token_hex(32)
+print(f"Hexadecimal secret key: {secret_key}")
+```
+
 ## Running the application
 
 @TODO
+
+## Good practices in a production environment
+
+- Do not push configmap / secret files (.yaml files) containing env variables to the repository.
 
 ## Explanation of the docker-compose.yml file (at the root of the application):
 
@@ -28,7 +50,7 @@ services: Defines the services (containers) that make up your application.
         MYSQL_USER: Creates a new user with the specified username (do not use "root").
         MYSQL_PASSWORD: Sets the password for the new user.
     ports: - "3306:3306": Maps port 3306 on your host machine to port 3306 inside the container, allowing external connections to MySQL.
-    volumes: 
+    volumes:
         - mysql_data:/var/lib/mysql: Mounts a named volume (mysql_data) to the /var/lib/mysql directory inside the container. This persists your database data even if the container is removed.
 
 volumes: Defines the named volumes used in your services.
@@ -38,7 +60,7 @@ volumes: Defines the named volumes used in your services.
 
 ## Problems faced at the initial setup:
 
-- Exception: Can not find valid pkg-config name. 
+- Exception: Can not find valid pkg-config name.
 - Specify MYSQLCLIENT_CFLAGS and MYSQLCLIENT_LDFLAGS env vars manually
 
 ```bash
@@ -51,3 +73,5 @@ $ sudo apt-get install pkg-config python3-dev default-libmysqlclient-dev build-e
 - [**minikube**](https://minikube.sigs.k8s.io/)
 - [**k9s**](https://github.com/derailed/k9s)
 - [**Python 3**](https://www.python.org/)
+- [**Flask (python framework)**](https://flask.palletsprojects.com/)
+- [**MDN Web Docs**](https://developer.mozilla.org/)
