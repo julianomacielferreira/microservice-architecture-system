@@ -78,3 +78,4 @@ $ sudo apt-get install pkg-config python3-dev default-libmysqlclient-dev build-e
 - [**Flask (python framework)**](https://flask.palletsprojects.com/)
 - [**RabbitMQ**](https://www.rabbitmq.com/)
 - [**MDN Web Docs**](https://developer.mozilla.org/)
+- [**Docker**](https://www.docker.com/)
