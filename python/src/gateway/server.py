@@ -1,8 +1,9 @@
 import os, gridfs, pika, json
 from flask import Flask, request
 from flask_pymongo import PyMongo
-from auth_service import auth_login, validate_jwt
-from storage import upload_video_to_mongodb
+from validate_service import validate_jwt
+from login_service import auth_login
+from uploader import upload_video_to_mongodb
 
 server = Flask(__name__)
 server.config["MONGO_URI"] = "mongodb://host.minikube.internal:27017/videos"
