@@ -21,6 +21,7 @@ spec:
       containers:
         - name: auth
           image: julianomacielferreira/auth:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
           envFrom:
