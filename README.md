@@ -4,7 +4,7 @@ This is a project I've always have the desire to code (but did not have the time
 
 The initial code is based on the tutorial from [freecodecamp youtube channel](https://www.youtube.com/@freecodecamp) called [**Microservice Architecture and System Design with Python & Kubernetes – Full Course**](https://www.youtube.com/watch?v=hmkF77F9TLw).
 
-![Microservice Architecture and System Design with Python & Kubernetes – Full Course](./video-thumbnail.jpg)
+![Microservice Architecture and System Design with Python & Kubernetes – Full Course](./static/video-thumbnail.jpg)
 
 ## Project File Structure
 
@@ -87,7 +87,7 @@ $ k9s
 
 - In the **k9s** hit 'enter' key on the rabbit-mq pod and 'ctrl + s' to start the container shell, as showing in the following image:
 
-![Enable RabbitMQ Manager](./rabbitmq-minikube-pod.gif)
+![Enable RabbitMQ Manager](./static/rabbitmq-minikube-pod.gif)
 
 - At the container shell type the command:
 
@@ -97,7 +97,7 @@ rabbitmq-plugins enable rabbitmq_management
 
 - Access http://rabbitmq-manager.local/ on the brownser. Enter with the username **_"guest"_** and password **_"guest"_**:
 
-![RabbitMQ Manager](./rabbitmq-manager.png)
+![RabbitMQ Manager](./static/rabbitmq-manager.png)
 
 ## Create secret token using python
 
