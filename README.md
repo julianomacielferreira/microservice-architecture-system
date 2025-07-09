@@ -99,6 +99,13 @@ rabbitmq-plugins enable rabbitmq_management
 
 ![RabbitMQ Manager](./static/rabbitmq-manager.png)
 
+## Create queues (video and mp3)
+
+- To create _video_ queue just add it in the _Queues and Streams_ section with the option _Durability_ set to _Durable_:
+
+![Create Video Queue](./static/create-video-queue.gif)
+
+
 ## Create secret token using python
 
 ```python
