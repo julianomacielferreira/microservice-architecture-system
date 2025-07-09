@@ -10,13 +10,78 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 
 @TODO
 
-## Create docker image, tagging and upload to a docker hub repository
+## Create docker image, tag it and upload to a docker hub repository
 
 @TODO
 
 ## Create config files for kubernetes to pull the images
 
-@TODO
+@TODO Create a shellscript to do it - enter in manifests files and _**run kubctl apply -f ./**_
+
+## Add host entries defined the rules section of the _ingress.yaml_ files:
+
+- Enable minikube addons for ingress:
+
+```bash
+$ minikube addons ingress enable
+$ minikube addons enable ingress-dns
+```
+
+- You can see the list of enabled / disabled addons with the following command:
+
+```bash
+$ minikube addons list
+```
+
+- Start minikube tunnel:
+
+```bash
+$ minikube tunnel
+```
+
+- Get the IP address maped from minikube to the hosting machine:
+
+```
+Status:	
+	machine: minikube
+	pid: 11200
+	route: 10.96.0.0/12 -> 192.168.49.2
+	minikube: Running
+	services: []
+    errors: 
+		minikube: no errors
+		router: no errors
+		loadbalancer emulator: no errors
+
+```
+
+- In this case is '**192.168.49.2**', so you have to update the hosts file in /etc directory:
+
+```bash
+$ sudo nano /etc/hosts
+```
+
+- Add the following entries:
+
+```
+# Kubernetes and docker
+192.168.49.2	kubernetes.docker.internal
+192.168.49.2	mp3converter.local 
+192.168.49.2	rabbitmq-manager.local
+
+```
+
+## Access rabbitmq manager:
+
+- With k9s, hit 'enter' key on the rabbit-mq pod and 'ctrl + s' to start the container shell, as showing in the following image:
+
+![RabbitMQ Manager](./rabbitmq-minikube-pod.gif)
+
+- At the container shell type the command:
+
+```bash
+root@rabbitmq-0:/# rabbitmq-plugins enable rabbitmq_management
+```
 
 ## Create secret token using python
 
@@ -29,6 +94,12 @@ print(f"Hexadecimal secret key: {secret_key}")
 ```
 
 ## Running the application
+
+- First start docker container:
+
+```bash
+$ docker-compose up
+```
 
 @TODO
 
