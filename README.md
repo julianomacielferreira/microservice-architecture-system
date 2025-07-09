@@ -75,13 +75,17 @@ $ sudo nano /etc/hosts
 
 - With k9s, hit 'enter' key on the rabbit-mq pod and 'ctrl + s' to start the container shell, as showing in the following image:
 
-![RabbitMQ Manager](./rabbitmq-minikube-pod.gif)
+![Enable RabbitMQ Manager](./rabbitmq-minikube-pod.gif)
 
 - At the container shell type the command:
 
 ```bash
 rabbitmq-plugins enable rabbitmq_management
 ```
+
+- Access http://rabbitmq-manager.local/ on the brownser. Enter with the username **_"guest"_** and password **_"guest"_**:
+
+![RabbitMQ Manager](./rabbitmq-manager.png)
 
 ## Create secret token using python
 
