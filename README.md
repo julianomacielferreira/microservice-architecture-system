@@ -80,7 +80,7 @@ $ sudo nano /etc/hosts
 - At the container shell type the command:
 
 ```bash
-root@rabbitmq-0:/# rabbitmq-plugins enable rabbitmq_management
+rabbitmq-plugins enable rabbitmq_management
 ```
 
 ## Create secret token using python
