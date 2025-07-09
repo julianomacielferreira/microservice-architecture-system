@@ -8,7 +8,54 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 
 ## Project File Structure
 
-@TODO
+```
+.
+├── docker-compose.yml
+├── init.sql
+├── LICENSE
+├── python
+│   └── src
+│       ├── auth
+│       │   ├── Dockerfile
+│       │   ├── manifests
+│       │   │   ├── auth-deploy.yaml
+│       │   │   ├── auth-secret.yaml
+│       │   │   ├── configmap.yaml
+│       │   │   ├── secret.yaml
+│       │   │   └── service.yaml
+│       │   ├── requirements.txt
+│       │   └── server.py
+│       ├── gateway
+│       │   ├── Dockerfile
+│       │   ├── login_service.py
+│       │   ├── manifests
+│       │   │   ├── configmap.yaml
+│       │   │   ├── gateway-deploy.yaml
+│       │   │   ├── ingress.yaml
+│       │   │   ├── secret.yaml
+│       │   │   └── service.yaml
+│       │   ├── requirements.txt
+│       │   ├── server.py
+│       │   ├── uploader.py
+│       │   └── validate_service.py
+│       └── rabbitmq
+│           └── manifests
+│               ├── configmap.yaml
+│               ├── ingress.yaml
+│               ├── pvc.yaml
+│               ├── secret.yaml
+│               ├── service.yaml
+│               └── statefulset.yaml
+├── README.md
+└── static
+    ├── create-video-queue.gif
+    ├── gateway-service-kubernetes.gif
+    ├── rabbitmq-manager.png
+    ├── rabbitmq-minikube-pod.gif
+    └── video-thumbnail.jpg
+
+
+```
 
 ## Create docker image, tag it and upload to a docker hub repository
 
