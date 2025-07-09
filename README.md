@@ -101,7 +101,7 @@ rabbitmq-plugins enable rabbitmq_management
 
 ## Create queues (video and mp3)
 
-- To create _video_ queue just add it in the _Queues and Streams_ section with the option _Durability_ set to _Durable_:
+- To create **_video_** queue just add it in the **_Queues and Streams_** section with the option **_Durability_** set to **_Durable_** to maintain queue messages even though the pods crashes or restarts:
 
 ![Create Video Queue](./static/create-video-queue.gif)
 
