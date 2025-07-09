@@ -106,6 +106,17 @@ rabbitmq-plugins enable rabbitmq_management
 ![Create Video Queue](./static/create-video-queue.gif)
 
 
+- Start the gateway service in **./python/src/gateway/manifests** directory by running the following command:
+
+```bash
+$ kubctl apply -f ./
+```
+
+- You should check the service running by clicking on the pod on k9s:
+
+![Gateway Service Kubernetes](./static/gateway-service-kubernetes.gif)
+
+
 ## Create secret token using python
 
 ```python
