@@ -95,7 +95,7 @@ $ k9s
 rabbitmq-plugins enable rabbitmq_management
 ```
 
-- Access http://rabbitmq-manager.local/ on the brownser. Enter with the username **_"guest"_** and password **_"guest"_**:
+- Access http://rabbitmq-manager.local/ on the brownser. Enter the username **_"guest"_** and password **_"guest"_** and you should see:
 
 ![RabbitMQ Manager](./static/rabbitmq-manager.png)
 
