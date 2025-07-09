@@ -42,13 +42,13 @@ $ minikube tunnel
 - Get the IP address maped from minikube to the hosting machine:
 
 ```
-Status:	
+Status:
 	machine: minikube
 	pid: 11200
 	route: 10.96.0.0/12 -> 192.168.49.2
 	minikube: Running
 	services: []
-    errors: 
+    errors:
 		minikube: no errors
 		router: no errors
 		loadbalancer emulator: no errors
@@ -66,14 +66,26 @@ $ sudo nano /etc/hosts
 ```
 # Kubernetes and docker
 192.168.49.2	kubernetes.docker.internal
-192.168.49.2	mp3converter.local 
+192.168.49.2	mp3converter.local
 192.168.49.2	rabbitmq-manager.local
 
 ```
 
 ## Access rabbitmq manager:
 
-- With k9s, hit 'enter' key on the rabbit-mq pod and 'ctrl + s' to start the container shell, as showing in the following image:
+- Start **minikube**:
+
+```bash
+$ minikube start
+```
+
+- Start **k9s**:
+
+```bash
+$ k9s
+```
+
+- In the **k9s** hit 'enter' key on the rabbit-mq pod and 'ctrl + s' to start the container shell, as showing in the following image:
 
 ![Enable RabbitMQ Manager](./rabbitmq-minikube-pod.gif)
 
