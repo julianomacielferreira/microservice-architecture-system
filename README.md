@@ -1,6 +1,6 @@
 ## Microservice Architecture System
 
-This is a project I've always have the desire to code (but did not have the time to do it before) and wanted to make my own modifications and improvements (i.e, add new features).
+This is a project I've always have the desire to code, but did not have the time to do it before, and wanted to make my own modifications and improvements (i.e, add new features).
 
 The initial code is based on the tutorial from [freecodecamp youtube channel](https://www.youtube.com/@freecodecamp) called [**Microservice Architecture and System Design with Python & Kubernetes – Full Course**](https://www.youtube.com/watch?v=hmkF77F9TLw).
 
@@ -65,7 +65,7 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 
 @TODO Create a shellscript to do it - enter in manifests files and _**run kubctl apply -f ./**_
 
-## Add host entries defined the rules section of the _ingress.yaml_ files:
+## Add host entries defined in the _rules_ section of the _ingress.yaml_ files:
 
 - Enable minikube addons for ingress:
 
