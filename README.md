@@ -55,7 +55,7 @@ Status:
 
 ```
 
-- In this case is '**192.168.49.2**', so you have to update the hosts file in /etc directory:
+- In this case is '**192.168.49.2**' (route property), so you have to update the hosts file in /etc directory:
 
 ```bash
 $ sudo nano /etc/hosts
