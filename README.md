@@ -69,7 +69,7 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 
 @TODO Explain how to tag an image
 
-@TODO Explain how to push as image to the docker hub repository
+@TODO Explain how to push as image to the docker hub repository (docker login, etc.)
 
 
 ## Create config files for kubernetes to pull the images
