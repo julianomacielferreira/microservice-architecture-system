@@ -57,11 +57,24 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 
 ```
 
-## Create docker image, tag it and upload to a docker hub repository
+## Prerequirements
 
 @TODO
 
+## Create docker image, tag it and upload to a docker hub repository
+
+@TODO Explain how to create a Dockerfile
+
+@TODO Explain how to build an image
+
+@TODO Explain how to tag an image
+
+@TODO Explain how to push as image to the docker hub repository
+
+
 ## Create config files for kubernetes to pull the images
+
+@TODO Explain the main concepts in deploy, configmap, secret, service, ingress, stateful and pcv yaml files
 
 @TODO Create a shellscript to do it - enter in manifests files and _**run kubctl apply -f ./**_
 
