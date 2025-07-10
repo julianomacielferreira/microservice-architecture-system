@@ -13,7 +13,7 @@ mongo = PyMongo(server)
 mongoGridFS = gridfs.GridFS(mongo.db)
 
 # connection with rabbitmq syncronous
-connection = pika.BlockingConnection(pika.ConnectionParameters("rabbitmq"))
+connection = pika.BlockingConnection(pika.ConnectionParameters(host="rabbitmq"))
 rabbitMQChannel = connection.channel()
 
 
