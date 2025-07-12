@@ -60,7 +60,7 @@ def login():
     if auth.username != email or auth.password != password:
         return rtn_messages["invalid_credentials"], 401
 
-    return createJWT(auth.username, os.environ.get("JWT_SECRET"), True)
+    return create_jwt(auth.username, os.environ.get("JWT_SECRET"), True)
 
 
 @server.route("/validate", methods=["POST"])
@@ -96,7 +96,7 @@ def get_username_by_email(email):
     """
     cursor = mysql.connection.cursor()
     result = cursor.execute(
-        "SELECT email, password FROM user WHERE email=%s", (auth.username)
+        "SELECT email, password FROM user WHERE email=%s", email
     )
 
     # the result should be one exactly (email column is unique)
@@ -108,7 +108,7 @@ def get_username_by_email(email):
     return False
 
 
-def createJWT(username, secret, is_admin):
+def create_jwt(username, secret, is_admin):
     """
      Create a JSON Web Token with username, the secret env and a flag to tell
      if the user has administrative privileges.
@@ -121,13 +121,13 @@ def createJWT(username, secret, is_admin):
     Returns:
         string: The JWT token encoded with HS256 algorithm.
     """
-    THIS_TIME = datetime.datetime.now(tz=datetime.timezone.utc)
+    now = datetime.datetime.now(tz=datetime.timezone.utc)
 
     return jwt.encode(
         {
             "username": username,
-            "exp": THIS_TIME + datetime.timedelta(days=1),
-            "iat": THIS_TIME,
+            "exp": now + datetime.timedelta(days=1),
+            "iat": now,
             "is_admin": is_admin,
         },
         secret,
