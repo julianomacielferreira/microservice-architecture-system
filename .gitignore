@@ -208,3 +208,6 @@ __marimo__/
 
 # vscode config files
 .vscode/**.json
+
+# intelliJ IDEA
+.idea
