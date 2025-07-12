@@ -25,24 +25,24 @@ THE SOFTWARE.
 import pika, json
 
 
-def upload_video_to_mongodb(file, mongoGridFS, rabbitMQChannel, payload):
+def upload_video_to_mongodb(file, mongo_gridfs, rabbitmq_channel, payload):
     """
     - Upload the file to mongodb gridfs
     - Put a message on the queue
     """
     try:
-        video_fileID = mongoGridFS.put(file)
+        video_file_id = mongo_gridfs.put(file)
     except Exception as error:
         return "internal server error", 500
 
     message = {
-        "video_fileID": str(video_fileID),
-        "mp3_fileID": None,
+        "video_file_id": str(video_file_id),
+        "mp3_file_id": None,
         "username": payload["username"],
     }
 
     try:
-        rabbitMQChannel.basic_publish(
+        rabbitmq_channel.basic_publish(
             exchange="",
             routing_key="video",
             body=json.dumps(message),
@@ -51,5 +51,5 @@ def upload_video_to_mongodb(file, mongoGridFS, rabbitMQChannel, payload):
             ),
         )
     except:
-        mongoGridFS.delete(video_fileID)
+        mongo_gridfs.delete(video_file_id)
         return "internal server error", 500
