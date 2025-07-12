@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
+import os
 
 import pika, json
 
@@ -44,7 +45,7 @@ def upload_video_to_mongodb(file, mongo_gridfs, rabbitmq_channel, payload):
     try:
         rabbitmq_channel.basic_publish(
             exchange="",
-            routing_key="video",
+            routing_key=os.environ.get("VIDEO_QUEUE"),
             body=json.dumps(message),
             property=pika.BasicProperties(
                 delivery_mode=pika.spec.PERSISTENT_DELIVERY_MODE
