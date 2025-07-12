@@ -25,14 +25,10 @@ THE SOFTWARE.
 import pika, sys, os, time
 from pymongo import MongoClient
 import gridfs
-from mp3_converter import video_to_mp3
-
-"""
-    Consumer service that pulls the messages off rabbitmp queue
-    to konw which videos have to convert and to store, etc.
-"""
+from mp3_converter import convert_video_to_mp3
 
 
+# Consumer service that pulls the messages off rabbitmq queue to know which videos have to convert and to store, etc.
 def main():
     client = MongoClient("host.minikube.internal", 27017)
     db_videos = client.videos
@@ -44,29 +40,25 @@ def main():
 
     # rabbitmq connection
     connection = pika.BlockingConnection(pika.ConnectionParameters(host="rabbitmq"))
-    rabbitMQChannel = connection.channel()
+    rabbitmq_channel = connection.channel()
 
-    VIDEO_QUEUE = os.environ.get("VIDEO_QUEUE")
+    video_queue = os.environ.get("VIDEO_QUEUE")
 
-    """
-        Whenever a message is taken off the queue by this consumer service
-        this callback function is called 
-    """
-
+    # Whenever a message is taken off the queue by this consumer service this callback function is called
     def callback(channel, method, properties, body):
-        err = video_to_mp3.start(body, fs_videos, fs_mp3s, channel)
+        err = convert_video_to_mp3(body, fs_videos, fs_mp3s, channel)
 
         # if there is an error, send a negative acknowledgment to keep message on the queue
         if err:
             channel.basic_nack(delivery_tag=method.delivery_tag)
-        else:
+        else:  # on success, send an acknowledgment
             channel.basic_ack(delivery_tag=method.delivery_tag)
 
-    rabbitMQChannel.basic_consume(queue=VIDEO_QUEUE, on_message_callback=callback)
+    rabbitmq_channel.basic_consume(queue=video_queue, on_message_callback=callback)
 
     print("Waiting for the messages. To exit press CTRL C")
 
-    rabbitMQChannel.start_consuming()
+    rabbitmq_channel.start_consuming()
 
 
 if __name__ == "__main__":
