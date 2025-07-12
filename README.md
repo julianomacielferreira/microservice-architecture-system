@@ -25,6 +25,13 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 │       │   │   └── service.yaml
 │       │   ├── requirements.txt
 │       │   └── server.py
+│       ├── converter
+│       │   ├── consumer.py
+│       │   ├── Dockerfile
+│       │   ├── manifests
+│       │   │   └── converter-deploy.yaml
+│       │   ├── mp3_converter.py
+│       │   └── requirements.txt
 │       ├── gateway
 │       │   ├── Dockerfile
 │       │   ├── login_service.py
