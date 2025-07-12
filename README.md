@@ -244,3 +244,4 @@ $ sudo apt-get install pkg-config python3-dev default-libmysqlclient-dev build-e
 - [**RabbitMQ**](https://www.rabbitmq.com/)
 - [**MDN Web Docs**](https://developer.mozilla.org/)
 - [**Docker**](https://www.docker.com/)
+- [**MoviePy**](https://pypi.org/project/moviepy/)
