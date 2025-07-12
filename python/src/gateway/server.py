@@ -36,9 +36,9 @@ mongo = PyMongo(server)
 
 mongoGridFS = gridfs.GridFS(mongo.db)
 
-# connection with rabbitmq syncronous
+# connection with rabbitmq synchronous
 connection = pika.BlockingConnection(pika.ConnectionParameters(host="rabbitmq"))
-rabbitMQChannel = connection.channel()
+rabbitmq_channel = connection.channel()
 
 
 @server.route("/login", methods=["POST"])
@@ -65,7 +65,7 @@ def upload():
             return "exactly 1 file required", 400
 
         for key, file in request.files.items():
-            error = upload_video_to_mongodb(file, mongoGridFS, rabbitMQChannel, payload)
+            error = upload_video_to_mongodb(file, mongoGridFS, rabbitmq_channel, payload)
 
             if error:
                 return error
@@ -82,5 +82,5 @@ def download():
 
 # config entry point listening on port 8080
 if __name__ == "__main__":
-    # this tells the operation system to listen to all public IPs
+    # this tells the operational system to listen to all public IPs
     server.run(host="0.0.0.0", port=8080)
