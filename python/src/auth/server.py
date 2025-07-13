@@ -44,7 +44,7 @@ rtn_messages = {
 @server.route("/login", methods=["POST"])
 def login():
     # Getting info from Basic Authentication Header and check if the request is valid
-    auth = request.authorization()
+    auth = request.authorization
     if not auth:
         return rtn_messages["rtn_messages"], 401
 
