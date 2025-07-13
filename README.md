@@ -104,6 +104,10 @@ $ minikube addons enable ingress-dns
 $ minikube addons list
 ```
 
+- The output shows the enabled addons:
+ 
+![Minikube addons list](./static/minikube-addons-list.png)
+
 ## Start **minikube** and tunneling:
 
 ```bash
