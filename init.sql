@@ -21,13 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-CREATE USER 'auth_user'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'db_user'@'localhost' IDENTIFIED BY 'password';
 
-CREATE DATABASE auth;
+CREATE DATABASE ms_architecture_system;
 
-GRANT ALL PRIVILEGES ON auth.* TO 'auth_user'@'localhost';
+GRANT ALL PRIVILEGES ON ms_architecture_system.* TO 'db_user'@'*';
 
-USE auth;
+USE ms_architecture_system;
 
 CREATE TABLE user(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
