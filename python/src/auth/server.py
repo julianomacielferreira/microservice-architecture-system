@@ -29,10 +29,13 @@ from flask_mysqldb import MySQL
 server = Flask(__name__)
 mysql = MySQL(server)
 
-mysql_envs = ["MYSQL_HOST", "MYSQL_USER", "MYSQL_PASSWORD", "MYSQL_DB", "MYSQL_PORT"]
+mysql_envs = ["MYSQL_HOST", "MYSQL_USER", "MYSQL_PASSWORD", "MYSQL_DB"]
 
 for mysql_env in mysql_envs:
     server.config[mysql_env] = os.environ.get(mysql_env)
+
+# separate MYSQL_POST because it must be an integer not string
+server.config["MYSQL_PORT"] = int(os.environ.get("MYSQL_PORT"))
 
 rtn_messages = {
     "missing_credentials": "missing credentials",
@@ -94,10 +97,9 @@ def get_username_by_email(email):
     Returns:
         dict: A dictionary with email and password if the user has been found, false otherwise.
     """
+    query = f"SELECT email, password FROM user WHERE email='{email}'"
     cursor = mysql.connection.cursor()
-    result = cursor.execute(
-        "SELECT email, password FROM user WHERE email=%s", email
-    )
+    result = cursor.execute(query)
 
     # the result should be one exactly (email column is unique)
     if result == 1:
