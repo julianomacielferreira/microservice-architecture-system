@@ -142,13 +142,23 @@ $ sudo nano /etc/hosts
 
 ```
 
-## Access rabbitmq manager:
-
-- Start **minikube**:
+## Start **minikube** and tunneling:
 
 ```bash
 $ minikube start
 ```
+
+- Start the minikube tunneling feature (to map a cluster internal IP to a local IP):
+
+```bash
+$ minikube tunnel
+```
+
+- You should see the output above:
+
+![Minikube Tunnel](./static/minikube-tunnel.gif)
+
+## Access rabbitmq manager:
 
 - Start **k9s**:
 
