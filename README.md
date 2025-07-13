@@ -29,7 +29,9 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 │       │   ├── consumer.py
 │       │   ├── Dockerfile
 │       │   ├── manifests
-│       │   │   └── converter-deploy.yaml
+│       │   │   ├── configmap.yaml
+│       │   │   ├── converter-deploy.yaml
+│       │   │   └── secret.yaml
 │       │   ├── mp3_converter.py
 │       │   └── requirements.txt
 │       ├── gateway
@@ -59,14 +61,16 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
     ├── gateway-service-kubernetes.gif
     ├── rabbitmq-manager.png
     ├── rabbitmq-minikube-pod.gif
+    ├── video-beauty-of-math.mp4
     └── video-thumbnail.jpg
-
-
 ```
 
 ## Prerequirements
 
-@TODO
+- This is some previous knowledge and technologies necessary to follow along and understand this tutorial:
+
+
+@TODO 
 
 ## Create docker image, tag it and upload to a docker hub repository
 
@@ -201,6 +205,9 @@ print(f"Hexadecimal secret key: {secret_key}")
 ```bash
 $ docker-compose up
 ```
+@TODO
+
+## Endpoints
 
 @TODO
 
@@ -247,6 +254,8 @@ $ sudo apt-get install pkg-config python3-dev default-libmysqlclient-dev build-e
 - [**minikube**](https://minikube.sigs.k8s.io/)
 - [**k9s**](https://github.com/derailed/k9s)
 - [**Python 3**](https://www.python.org/)
+- [**MySQL**](https://www.mysql.com/)
+- [**DBeaver Community**](https://dbeaver.io/)
 - [**Flask (python framework)**](https://flask.palletsprojects.com/)
 - [**RabbitMQ**](https://www.rabbitmq.com/)
 - [**MDN Web Docs**](https://developer.mozilla.org/)
