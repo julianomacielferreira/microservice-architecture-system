@@ -89,26 +89,7 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 
 @TODO Create a shell script to do it - enter in manifests files and _**run kubctl apply -f ./**_
 
-## Add host entries defined in the _rules_ section of the _ingress.yaml_ files:
-
-- Enable minikube addons for ingress:
-
-```bash
-$ minikube addons ingress enable
-$ minikube addons enable ingress-dns
-```
-
-- You can see the list of enabled / disabled addons with the following command:
-
-```bash
-$ minikube addons list
-```
-
-- The output shows the enabled addons:
- 
-![Minikube addons list](./static/minikube-addons-list.png)
-
-## Start **minikube** and tunneling:
+## Start **minikube** and tunneling feature:
 
 ```bash
 $ minikube start
@@ -155,6 +136,25 @@ $ sudo nano /etc/hosts
 192.168.49.2	rabbitmq-manager.local
 
 ```
+
+## Add host entries defined in the _rules_ section of the _ingress.yaml_ files:
+
+- Enable minikube addons for ingress:
+
+```bash
+$ minikube addons ingress enable
+$ minikube addons enable ingress-dns
+```
+
+- You can see the list of enabled / disabled addons with the following command:
+
+```bash
+$ minikube addons list
+```
+
+- The output shows the enabled addons:
+ 
+![Minikube addons list](./static/minikube-addons-list.png)
 
 ## Access rabbitmq manager:
 
