@@ -87,7 +87,7 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 
 @TODO Explain the main concepts in deploy, configmap, secret, service, ingress, stateful and pcv yaml files
 
-@TODO Create a shellscript to do it - enter in manifests files and _**run kubctl apply -f ./**_
+@TODO Create a shell script to do it - enter in manifests files and _**run kubctl apply -f ./**_
 
 ## Add host entries defined in the _rules_ section of the _ingress.yaml_ files:
 
@@ -104,13 +104,23 @@ $ minikube addons enable ingress-dns
 $ minikube addons list
 ```
 
-- Start minikube tunnel:
+## Start **minikube** and tunneling:
+
+```bash
+$ minikube start
+```
+
+- Start the minikube tunneling feature (to map a cluster internal IP to a local IP):
 
 ```bash
 $ minikube tunnel
 ```
 
-- Get the IP address maped from minikube to the hosting machine:
+- You should see the output above:
+
+![Minikube Tunnel](./static/minikube-tunnel.gif)
+
+- Get the IP address mapped from minikube to the hosting machine:
 
 ```
 Status:
@@ -141,22 +151,6 @@ $ sudo nano /etc/hosts
 192.168.49.2	rabbitmq-manager.local
 
 ```
-
-## Start **minikube** and tunneling:
-
-```bash
-$ minikube start
-```
-
-- Start the minikube tunneling feature (to map a cluster internal IP to a local IP):
-
-```bash
-$ minikube tunnel
-```
-
-- You should see the output above:
-
-![Minikube Tunnel](./static/minikube-tunnel.gif)
 
 ## Access rabbitmq manager:
 
