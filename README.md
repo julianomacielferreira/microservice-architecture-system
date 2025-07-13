@@ -105,6 +105,8 @@ $ minikube tunnel
 
 ![Minikube Tunnel](./static/minikube-tunnel.gif)
 
+## Add host entries defined in the _rules_ section of the _ingress.yaml_ files:
+
 - Get the IP address mapped from minikube to the hosting machine:
 
 ```
@@ -137,12 +139,15 @@ $ sudo nano /etc/hosts
 
 ```
 
-## Add host entries defined in the _rules_ section of the _ingress.yaml_ files:
+## Enable minikube addons for ingress:
 
-- Enable minikube addons for ingress:
+- Run the following commands:
 
 ```bash
 $ minikube addons ingress enable
+```
+
+```bash
 $ minikube addons enable ingress-dns
 ```
 
