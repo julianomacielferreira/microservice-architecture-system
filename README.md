@@ -144,7 +144,7 @@ $ sudo nano /etc/hosts
 - Run the following commands:
 
 ```bash
-$ minikube addons ingress enable
+$ minikube addons enable ingress
 ```
 
 ```bash
