@@ -69,7 +69,6 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 
 - This is some previous knowledge and technologies necessary to follow along and understand this tutorial:
 
-
 @TODO 
 
 ## Create docker image, tag it and upload to a docker hub repository
@@ -80,14 +79,14 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 
 @TODO Explain how to tag an image
 
-@TODO Explain how to push as image to the docker hub repository (docker login, etc.)
+@TODO Explain how to push an image to the docker hub repository (docker login, etc.)
 
 
 ## Create config files for kubernetes to pull the images
 
 @TODO Explain the main concepts in deploy, configmap, secret, service, ingress, stateful and pcv yaml files
 
-@TODO Create a shell script to do it - enter in manifests files and _**run kubctl apply -f ./**_
+@TODO Create a shell script to do it - enter in manifests directory and _**run kubctl apply -f ./**_
 
 ## Enable minikube addons for ingress:
 
