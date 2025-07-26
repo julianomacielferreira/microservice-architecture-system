@@ -1,4 +1,4 @@
-/*
+/**
  * The MIT License
  *
  * Copyright 2025 Juliano Maciel.
@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-CREATE USER 'db_user'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'db_user'@'*' IDENTIFIED BY 'password';
 
 CREATE DATABASE ms_architecture_system;
 
