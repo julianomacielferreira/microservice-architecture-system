@@ -229,6 +229,22 @@ $ docker-compose up
 
 ## Endpoints
 
+- **`POST` mp3converter.local/login** (Authentication)
+
+```bash
+$ curl --location --request POST 'http://mp3converter.local/login' \
+--header 'Authorization: ••••••'
+```
+<details>
+<summary><b>Response</b></summary>
+
+```json
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1Lm1hY2llbC5mZXJyZWlyYUBnbWFpbC5jb20iLCJleHAiOjE3NTQ1MTkyMTYsImlhdCI6MTc1NDQzMjgxNiwiaXNfYWRtaW4iOnRydWV9.W2Y0RQ7XrZ5KEFH1phv8RH03zyd5na4-LGg2VUUdX6I
+```
+</details>
+
+---
+
 @TODO
 
 ## Good practices in a production environment
