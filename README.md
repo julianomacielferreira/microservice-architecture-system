@@ -227,30 +227,6 @@ $ docker-compose up
 
 - Do not push configmap / secret files (.yaml files) containing env variables to the repository.
 
-## Explanation of the docker-compose.yml file (at the root of the application):
-
-```yml
-version: '3.8': Specifies the Docker Compose file format version.
-
-services: Defines the services (containers) that make up your application.
-    mysql_db: The name of your MySQL service.
-    image: mysql:8.0: Uses the official MySQL 8.0 Docker image. You can specify a more precise version if needed (e.g., mysql:8.0.30).
-    container_name: mysql_8_database: Assigns a custom name to your container for easier identification.
-    restart: always: Ensures the container restarts automatically if it stops or the Docker daemon restarts.
-    environment: Sets environment variables within the container.
-        MYSQL_ROOT_PASSWORD: Sets the password for the root user.
-        MYSQL_DATABASE: Creates a new database with the specified name when the container starts.
-        MYSQL_USER: Creates a new user with the specified username (do not use "root").
-        MYSQL_PASSWORD: Sets the password for the new user.
-    ports: - "3306:3306": Maps port 3306 on your host machine to port 3306 inside the container, allowing external connections to MySQL.
-    volumes:
-        - mysql_data:/var/lib/mysql: Mounts a named volume (mysql_data) to the /var/lib/mysql directory inside the container. This persists your database data even if the container is removed.
-
-volumes: Defines the named volumes used in your services.
-    mysql_data: The named volume for your MySQL data.
-        driver: local: Specifies that the volume should be stored locally on your host machine.
-```
-
 ## Problems faced at the initial setup:
 
 - Exception: Can not find valid pkg-config name.
@@ -259,6 +235,36 @@ volumes: Defines the named volumes used in your services.
 ```bash
 $ sudo apt-get install pkg-config python3-dev default-libmysqlclient-dev build-essential
 ```
+
+MySQL connection error between pods.
+
+```bash
+ [2025-08-05 18:28:17,282] ERROR in app: Exception on /login [POST]                                                                                                                                              │
+ Traceback (most recent call last):                                                                                                                                                                              │
+   File "/usr/local/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app                                                                                                                           │
+     response = self.full_dispatch_request()                                                                                                                                                                     │
+   File "/usr/local/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request                                                                                                               │
+     rv = self.handle_user_exception(e)                                                                                                                                                                          │
+   File "/usr/local/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request                                                                                                               │
+     rv = self.dispatch_request()                                                                                                                                                                                │
+   File "/usr/local/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request                                                                                                                    │
+     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]                                                                                                     │
+   File "/app/server.py", line 59, in login                                                                                                                                                                      │
+     user = auth_service.get_username_by_email(auth.username)                                                                                                                                                    │
+   File "/app/auth_service.py", line 59, in get_username_by_email                                                                                                                                                │
+     cursor = self.mysql.connection.cursor()                                                                                                                                                                     │
+   File "/usr/local/lib/python3.10/site-packages/flask_mysqldb/__init__.py", line 109, in connection                                                                                                             │
+     ctx.mysql_db = self.connect                                                                                                                                                                                 │
+   File "/usr/local/lib/python3.10/site-packages/flask_mysqldb/__init__.py", line 97, in connect                                                                                                                 │
+     return MySQLdb.connect(**kwargs)                                                                                                                                                                            │
+   File "/usr/local/lib/python3.10/site-packages/MySQLdb/__init__.py", line 121, in Connect                                                                                                                      │
+     return Connection(*args, **kwargs)                                                                                                                                                                          │
+   File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 200, in __init__                                                                                                                  │
+     super().__init__(*args, **kwargs2)                                                                                                                                                                          │
+ MySQLdb.OperationalError: (1045, "Access denied for user 'root'@'10.244.0.45' (using password: YES)")                                                                                                           │
+ 10.244.0.38 - - [05/Aug/2025 18:28:17] "POST /login HTTP/1.1" 500 -  
+```
+
 
 ## References
 
