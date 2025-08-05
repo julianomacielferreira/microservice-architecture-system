@@ -27,7 +27,16 @@ import os, requests
 
 def auth_login(request):
     """
-    Authenticate in the login endpoint at auth service
+      Authenticates at the login endpoint in the authentication service.
+
+      Args:
+           request (Request): HTTP request containing authentication credentials.
+
+      Returns:
+          tuple: A tuple containing the authentication token and an error (if any).
+                - token (str): Authentication token if authentication is successful.
+                - error (tuple): Tuple containing the error message and HTTP status code if authentication fails.
+
     """
     authorization = request.authorization
 
