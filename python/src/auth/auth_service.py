@@ -89,5 +89,5 @@ class AuthService:
                 "is_admin": is_admin,
             },
             self.secret,
-            algorithm=["HS256"],
+            algorithm="HS256",
         )
