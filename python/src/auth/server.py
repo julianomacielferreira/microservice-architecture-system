@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import jwt, datetime, os
+import jwt, os
 from flask import Flask, request
 from flask_mysqldb import MySQL
 
@@ -67,7 +67,7 @@ def login():
     if auth.username != email or auth.password != password:
         return rtn_messages["invalid_credentials"], 401
 
-    return auth_service.create_jwt(auth.username, os.environ.get("JWT_SECRET"), True)
+    return auth_service.create_jwt(auth.username, True)
 
 
 @server.route("/validate", methods=["POST"])
