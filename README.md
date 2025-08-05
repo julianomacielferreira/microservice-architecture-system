@@ -244,7 +244,7 @@ $ docker-compose up
 $ sudo apt-get install pkg-config python3-dev default-libmysqlclient-dev build-essential
 ```
 
-MySQL connection error between pods.
+- MySQL connection error between pods.
 
 ```bash
  [2025-08-05 18:28:17,282] ERROR in app: Exception on /login [POST]                                                                                                                                              │
@@ -273,7 +273,7 @@ MySQL connection error between pods.
  10.244.0.38 - - [05/Aug/2025 18:28:17] "POST /login HTTP/1.1" 500 -  
 ```
 
-**Follow the steps in this issue**: [https://github.com/kantancoding/microservices-python/issues/16](https://github.com/kantancoding/microservices-python/issues/16)
+- To solve, just follow the steps in this issue: [https://github.com/kantancoding/microservices-python/issues/16](https://github.com/kantancoding/microservices-python/issues/16)
 
 
 
