@@ -273,6 +273,9 @@ MySQL connection error between pods.
  10.244.0.38 - - [05/Aug/2025 18:28:17] "POST /login HTTP/1.1" 500 -  
 ```
 
+Follow this steps on this issue [https://github.com/kantancoding/microservices-python/issues/16](https://github.com/kantancoding/microservices-python/issues/16)
+
+
 
 ## References
 
