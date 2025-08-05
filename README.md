@@ -10,16 +10,15 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 
 ```
 .
-├── docker-compose.yml
 ├── init.sql
 ├── LICENSE
 ├── python
 │   └── src
 │       ├── auth
+│       │   ├── auth_service.py
 │       │   ├── Dockerfile
 │       │   ├── manifests
 │       │   │   ├── auth-deploy.yaml
-│       │   │   ├── auth-secret.yaml
 │       │   │   ├── configmap.yaml
 │       │   │   ├── secret.yaml
 │       │   │   └── service.yaml
@@ -47,6 +46,12 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 │       │   ├── server.py
 │       │   ├── uploader.py
 │       │   └── validate_service.py
+│       ├── mysql
+│       │   └── manifests
+│       │       ├── configmap.yaml
+│       │       ├── pod.yaml
+│       │       ├── secret.yaml
+│       │       └── service.yaml
 │       └── rabbitmq
 │           └── manifests
 │               ├── configmap.yaml
@@ -59,10 +64,13 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 └── static
     ├── create-video-queue.gif
     ├── gateway-service-kubernetes.gif
+    ├── minikube-addons-list.png
+    ├── minikube-tunnel.gif
     ├── rabbitmq-manager.png
     ├── rabbitmq-minikube-pod.gif
     ├── video-beauty-of-math.mp4
     └── video-thumbnail.jpg
+
 ```
 
 ## Prerequirements
