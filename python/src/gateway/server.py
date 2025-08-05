@@ -26,7 +26,7 @@ import os, gridfs, pika, json
 from flask import Flask, request
 from flask_pymongo import PyMongo
 from validate_service import validate_jwt
-from login_service import auth_login
+from login_service import Authenticator
 from uploader import upload_video_to_mongodb
 
 server = Flask(__name__)
@@ -40,10 +40,12 @@ mongoGridFS = gridfs.GridFS(mongo.db)
 connection = pika.BlockingConnection(pika.ConnectionParameters(host="rabbitmq"))
 rabbitmq_channel = connection.channel()
 
+authenticator = Authenticator(os.environ.get("AUTH_SERVICE_URL"))
+
 
 @server.route("/login", methods=["POST"])
 def login():
-    token, error = auth_login(request)
+    token, error = authenticator.login(request)
 
     if error:
         return error
