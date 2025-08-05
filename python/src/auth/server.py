@@ -26,6 +26,8 @@ import jwt, datetime, os
 from flask import Flask, request
 from flask_mysqldb import MySQL
 
+from auth_service import AuthService
+
 server = Flask(__name__)
 mysql = MySQL(server)
 
@@ -43,6 +45,8 @@ rtn_messages = {
     "token_invalid": "not authorized, token invalid",
 }
 
+auth_service = AuthService(mysql, os.environ.get("JWT_SECRET"))
+
 
 @server.route("/login", methods=["POST"])
 def login():
@@ -52,7 +56,7 @@ def login():
         return rtn_messages["rtn_messages"], 401
 
     # retrieve username and password
-    user = get_username_by_email(auth.username)
+    user = auth_service.get_username_by_email(auth.username)
 
     if not user:
         return rtn_messages["invalid_credentials"], 401
@@ -63,7 +67,7 @@ def login():
     if auth.username != email or auth.password != password:
         return rtn_messages["invalid_credentials"], 401
 
-    return create_jwt(auth.username, os.environ.get("JWT_SECRET"), True)
+    return auth_service.create_jwt(auth.username, os.environ.get("JWT_SECRET"), True)
 
 
 @server.route("/validate", methods=["POST"])
@@ -85,56 +89,6 @@ def validate():
         return rtn_messages["token_invalid"], 403
 
     return decoded_jwt_token, 200
-
-
-def get_username_by_email(email):
-    """
-     Fetch the database to retrieve the user using his email.
-
-     Args:
-        email (string): The user email
-
-    Returns:
-        dict: A dictionary with email and password if the user has been found, false otherwise.
-    """
-    query = f"SELECT email, password FROM user WHERE email='{email}'"
-    cursor = mysql.connection.cursor()
-    result = cursor.execute(query)
-
-    # the result should be one exactly (email column is unique)
-    if result == 1:
-        user_row = result.fetchone()
-
-        return {"email": user_row[0], "password": user_row[1]}
-
-    return False
-
-
-def create_jwt(username, secret, is_admin):
-    """
-     Create a JSON Web Token with username, the secret env and a flag to tell
-     if the user has administrative privileges.
-
-     Args:
-        username (string).
-        secret (string).
-        is_admin (bool)
-
-    Returns:
-        string: The JWT token encoded with HS256 algorithm.
-    """
-    now = datetime.datetime.now(tz=datetime.timezone.utc)
-
-    return jwt.encode(
-        {
-            "username": username,
-            "exp": now + datetime.timedelta(days=1),
-            "iat": now,
-            "is_admin": is_admin,
-        },
-        secret,
-        algorithm=["HS256"],
-    )
 
 
 # config entry point listening on port 5000
