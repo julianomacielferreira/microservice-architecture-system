@@ -25,31 +25,39 @@ THE SOFTWARE.
 import os, requests
 
 
-def auth_login(request):
+class Authenticator:
     """
-      Authenticates at the login endpoint in the authentication service.
+        Class responsible for authenticating HTTP requests with an authentication service.
 
-      Args:
-           request (Request): HTTP request containing authentication credentials.
-
-      Returns:
-          tuple: A tuple containing the authentication token and an error (if any).
-                - token (str): Authentication token if authentication is successful.
-                - error (tuple): Tuple containing the error message and HTTP status code if authentication fails.
-
+        Provides methods for authenticating requests and obtaining authentication tokens.
     """
-    authorization = request.authorization
 
-    if not authorization:
-        return None, ("missing credential", 401)
+    def __init__(self, auth_service_url):
+        self.AUTH_SERVICE_URL = auth_service_url
 
-    basicAuth = (authorization.username, authorization.password)
+    def login(self, request):
+        """
+          Authenticates at the login endpoint in the authentication service.
 
-    AUTH_SERVICE_URL = os.environ.get("AUTH_SERVICE_URL")
+          Args:
+               request (Request): HTTP request containing authentication credentials.
 
-    response = requests.post(f"http://{AUTH_SERVICE_URL}/login", auth=basicAuth)
+          Returns:
+              tuple: A tuple containing the authentication token and an error (if any).
+                    - token (str): Authentication token if authentication is successful.
+                    - error (tuple): Tuple containing the error message and HTTP status code if authentication fails.
 
-    if response.status_code == 200:
-        return response.text, None
+        """
+        authorization = request.authorization
 
-    return None, (response.text, response.status_code)
+        if not authorization:
+            return None, ("missing credential", 401)
+
+        basic_auth = (authorization.username, authorization.password)
+
+        response = requests.post(f"http://{self.AUTH_SERVICE_URL}/login", auth=basic_auth)
+
+        if response.status_code == 200:
+            return response.text, None
+
+        return None, (response.text, response.status_code)
