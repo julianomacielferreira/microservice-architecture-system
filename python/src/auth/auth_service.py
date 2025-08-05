@@ -62,7 +62,7 @@ class AuthService:
         cursor.close()
 
         # the result should be one exactly (email column is unique)
-        if result == 1:
+        if result:
             return {"email": result[0], "password": result[1]}
 
         return False
