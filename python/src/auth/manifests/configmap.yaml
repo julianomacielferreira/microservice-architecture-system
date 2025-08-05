@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: auth-configmap
 data:
-  MYSQL_HOST: "mysql"
+  MYSQL_HOST: "mysql.default.svc.cluster.local"
   MYSQL_USER: "db_user"
   MYSQL_DB: "ms_architecture_system"
   MYSQL_PORT: "3306"
