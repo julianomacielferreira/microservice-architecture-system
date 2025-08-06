@@ -26,12 +26,12 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 │       │   └── server.py
 │       ├── converter
 │       │   ├── consumer.py
+│       │   ├── converter_service.py
 │       │   ├── Dockerfile
 │       │   ├── manifests
 │       │   │   ├── configmap.yaml
 │       │   │   ├── converter-deploy.yaml
 │       │   │   └── secret.yaml
-│       │   ├── mp3_converter.py
 │       │   └── requirements.txt
 │       ├── gateway
 │       │   ├── Dockerfile
@@ -44,7 +44,7 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 │       │   │   └── service.yaml
 │       │   ├── requirements.txt
 │       │   ├── server.py
-│       │   ├── uploader.py
+│       │   ├── uploader_service.py
 │       │   └── validate_service.py
 │       ├── mysql
 │       │   └── manifests
@@ -63,6 +63,8 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
 ├── README.md
 └── static
     ├── create-video-queue.gif
+    ├── dbeaver-connection.png
+    ├── discover-mysql-pod-cluster-ip.png
     ├── gateway-service-kubernetes.gif
     ├── minikube-addons-list.png
     ├── minikube-tunnel.gif
@@ -70,6 +72,7 @@ The initial code is based on the tutorial from [freecodecamp youtube channel](ht
     ├── rabbitmq-minikube-pod.gif
     ├── video-beauty-of-math.mp4
     └── video-thumbnail.jpg
+
 
 ```
 
