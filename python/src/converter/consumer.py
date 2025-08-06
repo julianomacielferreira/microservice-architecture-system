@@ -22,10 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import pika, sys, os, time
+import pika, sys, os
 from pymongo import MongoClient
 import gridfs
-from mp3_converter import convert_video_to_mp3
+from converter_service import VideoToMp3Converter
 
 
 # Consumer service that pulls the messages off rabbitmq queue to know which videos have to convert and to store, etc.
@@ -44,9 +44,11 @@ def main():
 
     video_queue = os.environ.get("VIDEO_QUEUE")
 
+    vide_converter = VideoToMp3Converter(fs_videos, fs_mp3s, rabbitmq_channel)
+
     # Whenever a message is taken off the queue by this consumer service this callback function is called
     def callback(channel, method, properties, body):
-        err = convert_video_to_mp3(body, fs_videos, fs_mp3s, channel)
+        err = vide_converter.convert_to_mp3(body)
 
         # if there is an error, send a negative acknowledgment to keep message on the queue
         if err:
