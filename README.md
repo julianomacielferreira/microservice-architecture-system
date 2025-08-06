@@ -228,7 +228,9 @@ $ kubectl get svc mysql -o yaml
 
 ![Discover clusterIP](./static/discover-mysql-pod-cluster-ip.png)
 
-An example of a connection with dbeaver tool:
+In this case the IP address of the mysql service is **_10.104.18.242_**. 
+
+An example using this information in a connection with dbeaver tool:
 
 ![DBeaver](./static/dbeaver-connection.png)
 
