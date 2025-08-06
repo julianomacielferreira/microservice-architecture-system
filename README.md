@@ -232,8 +232,7 @@ $ docker-compose up
 - **`POST` mp3converter.local/login** (Authentication)
 
 ```bash
-$ curl --location --request POST 'http://mp3converter.local/login' \
---header 'Authorization: ••••••'
+$ curl --location --request POST 'http://mp3converter.local/login' -u 'ju.maciel.ferreira@gmail.com:password'
 ```
 <details>
 <summary><b>Response</b></summary>
