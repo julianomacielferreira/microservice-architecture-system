@@ -218,6 +218,20 @@ secret_key = secrets.token_hex(32)
 print(f"Hexadecimal secret key: {secret_key}")
 ```
 
+## Discover the IP address for connecting to MySQL
+
+Run the following command and get the value of **_clusterIP_** from the spec:
+
+```bash
+$ kubectl get svc mysql -o yaml
+```
+
+![Discover clusterIP](./static/discover-mysql-pod-cluster-ip.png)
+
+An example of a connection with dbeaver tool:
+
+![DBeaver](./static/dbeaver-connection.png)
+
 ## Running the application
 
 - First start docker container:
