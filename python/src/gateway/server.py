@@ -25,7 +25,7 @@ THE SOFTWARE.
 import os, gridfs, pika, json
 from flask import Flask, request
 from flask_pymongo import PyMongo
-from validate_service import validate_jwt
+from validate_service import JWTValidator
 from login_service import Authenticator
 from uploader import upload_video_to_mongodb
 
@@ -41,6 +41,7 @@ connection = pika.BlockingConnection(pika.ConnectionParameters(host="rabbitmq"))
 rabbitmq_channel = connection.channel()
 
 authenticator = Authenticator(os.environ.get("AUTH_SERVICE_URL"))
+jwt_validator = JWTValidator(os.environ.get("AUTH_SERVICE_URL"))
 
 
 @server.route("/login", methods=["POST"])
@@ -55,7 +56,7 @@ def login():
 
 @server.route("/upload", methods=["POST"])
 def upload():
-    payload, error = validate_jwt(request)
+    payload, error = jwt_validator.validate(request)
 
     if error:
         return error
