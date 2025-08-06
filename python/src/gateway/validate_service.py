@@ -21,30 +21,51 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
+import requests
 
-import os, requests
 
-
-def validate_jwt(request):
+class JWTValidator:
     """
-    Foward the token to the validate endpoint at auth service
+        Class responsible for validating JWT tokens with an authentication service.
+
+        Provides methods for validating tokens and obtaining decoded claims.
     """
-    if not "Authorization" in request.headers:
-        return None, ("missing credentials.", 401)
 
-    token = request.headers["Authorization"]
+    def __init__(self, auth_service_url):
+        """
+        Initializes the class with the authentication service URL.
 
-    if not token:
-        return None, ("missing credentials.", 401)
+        Args:
+            auth_service_url (str, optional): Authentication service URL. Defaults to None.
+        """
+        self.AUTH_SERVICE_URL = auth_service_url
 
-    AUTH_SERVICE_URL = os.environ.get("AUTH_SERVICE_URL")
+    def validate(self, request):
+        """
+        Validates a JWT token by forwarding it to the validation endpoint in the authentication service.
 
-    response = requests.post(
-        f"http://{AUTH_SERVICE_URL}/validate", headers={"Authorization": token}
-    )
+        Args:
+            request (Request): HTTP request containing the JWT token.
 
-    # return the decoded token (the claims)
-    if response.status_code == 200:
-        return response.text, None
+        Returns:
+            tuple: A tuple containing the decoded claims and an error (if any).
+                - claims (str): Decoded claims if validation is successful.
+                - error (tuple): Tuple containing the error message and HTTP status code if validation fails.
+        """
+        if not "Authorization" in request.headers:
+            return None, ("missing credentials.", 401)
 
-    return None, (response.text, response.status_code)
+        token = request.headers["Authorization"]
+
+        if not token:
+            return None, ("missing credentials.", 401)
+
+        response = requests.post(
+            f"http://{self.AUTH_SERVICE_URL}/validate", headers={"Authorization": token}
+        )
+
+        if response.status_code == 200:
+            # return the decoded token (the claims)
+            return response.text, None
+
+        return None, (response.text, response.status_code)
