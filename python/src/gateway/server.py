@@ -27,7 +27,7 @@ from flask import Flask, request
 from flask_pymongo import PyMongo
 from validate_service import JWTValidator
 from login_service import Authenticator
-from uploader import upload_video_to_mongodb
+from uploader_service import VideoUploader
 
 server = Flask(__name__)
 server.config["MONGO_URI"] = "mongodb://host.minikube.internal:27017/videos"
@@ -42,6 +42,7 @@ rabbitmq_channel = connection.channel()
 
 authenticator = Authenticator(os.environ.get("AUTH_SERVICE_URL"))
 jwt_validator = JWTValidator(os.environ.get("AUTH_SERVICE_URL"))
+video_uploader = VideoUploader(mongoGridFS, rabbitmq_channel)
 
 
 @server.route("/login", methods=["POST"])
@@ -68,7 +69,7 @@ def upload():
             return "exactly 1 file required", 400
 
         for key, file in request.files.items():
-            error = upload_video_to_mongodb(file, mongoGridFS, rabbitmq_channel, payload)
+            error = video_uploader.upload_to_mongodb(file, payload)
 
             if error:
                 return error
